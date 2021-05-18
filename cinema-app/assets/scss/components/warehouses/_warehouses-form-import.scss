@@ -1,0 +1,13 @@
+.selected-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &__info {
+        margin-right: 30px;
+    }
+
+    &__action {
+        margin-left: auto;
+    }
+}

@@ -1,0 +1,50 @@
+.viewapp-notification-detail {
+    padding: 11px;
+    font-size: 14px;
+
+    .image {
+        width: 100%;
+        max-width: 100%;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .title {
+        margin-bottom: 21px;
+    }
+
+    .heading {
+        font-size: 18px;
+        // color: #1d8dc6;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .caption {
+        font-size: 13px;
+        color: rgba(#000, .5)
+    }
+
+    .content {
+        line-height: 1.5;
+        word-break: break-word;
+
+        p {
+            margin-bottom: 0;
+        }
+
+        .image {
+            position: relative;
+            display: table;
+            clear: both;
+            text-align: center;
+            margin: 1em auto;
+        }
+
+        .image-style-side {
+            float: right;
+            max-width: 50%;
+            margin-left: 21px;
+        }
+    }
+}

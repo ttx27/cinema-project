@@ -1,0 +1,33 @@
+// Colors
+$color-primary: #afd139;
+$color-secondary: #FF8F00;
+$color-success: #00E676;
+$color-error: #DD2C00;
+$color-info: #26A69A;
+
+$color-button: #99ba21;
+$color-bg-input: #1d8dc6;
+
+// Fonts
+$font-viewapp: 'SFProDisplay', 'Arial', 'Helvetica', sans-serif;
+
+// Spacers
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: ($spacer * .25),
+  2: ($spacer * .5),
+  3: $spacer,
+  4: ($spacer * 2),
+  5: ($spacer * 3),
+  6: ($spacer * 4),
+  auto: auto
+) !default;
+
+$xy-border: (
+  top: t,
+  right: r,
+  bottom: b,
+  left: l,
+  all: a
+) !default;
