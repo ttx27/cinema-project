@@ -1,0 +1,101 @@
+.app-news-box {
+    display: flex;
+    border-bottom: 1px solid #979797;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    color: inherit;
+    
+    &__img {
+        position: relative;
+        width: 92px;
+        flex: 0 0 92px;
+        height: 51.75px;
+        margin-right: 11px;
+        
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__title {
+        @include set-line((
+            'lineClamp': 1,
+            'lineHeight': (19/16)
+        ));
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 10px;
+
+        a {
+            color: inherit;
+        }
+    }
+
+    &__desc {
+        @include set-line((
+            'lineClamp': 2,
+            'lineHeight': (16/14),
+        ));
+        font-size: 14px;
+        font-weight: 300;
+        margin-bottom: 0;
+    }
+
+    &--vertical {
+        flex-direction: column;
+        border-bottom: 0;
+        // padding-bottom: 0;
+
+        .app-news-box__img {
+            width: 100%;
+            height: 0;
+            padding-top: 100%;
+            margin-right: 0;
+            margin-bottom: 13px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .app-news-box__title {
+            @include set-line((
+                'lineClamp': 2,
+                'lineHeight': (19/16),
+                'fixedHeight': true
+            ));
+            margin-bottom: 5px;
+        }
+        
+        .app-news-box__desc {
+            @include set-line((
+                'lineClamp': 2,
+                'lineHeight': (16/14),
+                'fixedHeight': true
+            ));
+        }
+
+        &.app-news-box--readed {
+            .app-news-box__title, .app-news-box__desc {
+                color: rgba(0, 0, 0, 0.4);
+            }
+        }
+    }
+
+    &:not(.app-news-box--vertical) {
+        background-color: rgba(#000, .1);
+
+        &.app-news-box--readed {
+            background-color: #fff;
+        }
+    }
+
+
+    &:hover, &:focus {
+        color: inherit;
+    }
+}

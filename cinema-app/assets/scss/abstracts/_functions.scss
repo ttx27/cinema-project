@@ -1,0 +1,91 @@
+// Map deep get
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+/// To number function
+/// @param {String} $value - a string number to convert
+@function toNumber($value) {
+  @if type-of($value) == "number" {
+    @return $value;
+  } @else if type-of($value) != "string" {
+    $_: log("Value for `to-number` should be a number or a string.");
+  }
+
+  $result: 0;
+  $digits: 0;
+  $minus: str-slice($value, 1, 1) == "-";
+  $numbers: (
+    "0": 0,
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9
+  );
+
+  @for $i from if($minus, 2, 1) through str-length($value) {
+    $character: str-slice($value, $i, $i);
+
+    @if not(index(map-keys($numbers), $character) or $character == ".") {
+      @return to-length(if($minus, -$result, $result), str-slice($value, $i));
+    }
+
+    @if $character == "." {
+      $digits: 1;
+    } @else if $digits == 0 {
+      $result: $result * 10 + map-get($numbers, $character);
+    } @else {
+      $digits: $digits * 10;
+      $result: $result + map-get($numbers, $character) / $digits;
+    }
+  }
+
+  @return if($minus, -$result, $result);
+}
+
+
+
+// Map deep merge
+@function extend($map, $maps.../*, $deep */) {
+	$last: nth($maps, -1);
+	$deep: $last == true;
+	$max: if($deep, length($maps) - 1, length($maps));
+
+  	@for $i from 1 through $max {
+    	$current: nth($maps, $i);
+
+    	@if not $deep {
+      		$map: map-merge($map, $current);
+    	} @else {
+      		@each $key, $value in $current {
+
+	        	@if type-of($value) == "map" and type-of(map-get($map, $key)) == "map" {
+	          		$value: extend(map-get($map, $key), $value, true);
+	        	}
+
+	        	$map: map-merge($map, ($key: $value));
+	      	}
+    	}
+  	}
+
+  	@return $map;
+}

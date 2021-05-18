@@ -1,0 +1,57 @@
+.appview-profile {
+    max-width: 403px;
+    margin: 0 auto;
+    
+    .avatar {
+        margin-bottom: 16px;
+        border-radius: 50%;
+        border: 2px solid $color-primary;
+        width: 100%;
+        position: relative;
+        height: 0;
+        padding-top: 100%;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+    }
+
+    .list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: flex;
+            margin-bottom: 5px;
+
+            span:first-child {
+                flex: 0 0 80px;
+                width: 80px;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .button-edit-wrapper {
+        button {
+            width: 130px;
+
+            &:not(:last-child) {
+                margin-right: 16px;
+            }
+        }
+    }
+
+    .ant-upload.ant-upload-select-picture-card {
+        width: 100%;
+    }
+}

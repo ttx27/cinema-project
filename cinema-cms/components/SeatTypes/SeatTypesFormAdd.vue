@@ -1,0 +1,98 @@
+<template>
+  <a-form :form="form">
+    <a-row :gutter="24">
+      <a-col :span="24">
+        <a-form-item label="Tên">
+          <a-input
+            placeholder="Nhập tên"
+            v-decorator="['name', {
+                rules: [
+                  { required: true, message: 'Bắt buộc!' },
+                  { pattern: /^[^`~!@#$%^&*()_+={}\[\]|\\:;“’<,>.?๐฿]*$/g, message: 'Không được chứa ký tự đặc biệt'}
+                ]
+              }]"
+          />
+        </a-form-item>
+      </a-col>
+
+      <a-col :span="24">
+        <a-form-item label="Giá tiền">
+          <a-input-number
+            style="width: 100%"
+            placeholder="Nhập giá tiền"
+            v-decorator="['price', {
+                rules: [
+                  { required: true, message: 'Bắt buộc!' },
+                ]
+              }]"
+            :formatter="value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+            :parser="value => value.replace(/\$\s?|(,*)/g, '')"
+          />
+        </a-form-item>
+      </a-col>
+
+      <a-col :span="24">
+        <a-form-item>
+          <a-button type="primary" @click="submit" :loading="buttonLoading">Lưu</a-button>
+          <a-button class="ml-3" type="" @click="cancel" :loading="buttonLoading">Hủy</a-button>
+        </a-form-item>
+      </a-col>
+    </a-row>
+  </a-form>
+</template>
+
+<script>
+import { debounce } from "lodash";
+import { mapGetters, mapState } from "vuex";
+
+export default {
+  data() {
+    return {
+      buttonLoading: false,
+      searchFetching: false,
+      form: this.$form.createForm(this, { name: "add" }),
+    };
+  },
+
+  computed: {
+  },
+
+  methods: {
+    cancel() {
+      this.$emit("submitted");
+    },
+
+    submit(e) {
+      e.preventDefault();
+      this.form.validateFields(async (error, values) => {
+        console.log("submit", values);
+        if (!error) {
+          this.buttonLoading = true;
+
+          const doAdd = await this.$store.dispatch("seatTypes/add", {
+            ...values,
+          });
+
+          if (doAdd.errors || doAdd.message) {
+            this.$message.error((doAdd.errors && doAdd.errors.message) || doAdd.message);
+          } else {
+            this.$message.success("Thêm loại ghế thành công!");
+            this.$emit("submitted");
+          }
+        } else {
+          this.$message.error("Xin hãy điền đầy đủ thông tin!");
+        }
+        this.buttonLoading = false;
+      });
+    },
+
+    filterOption(input, option) {
+      return (
+        option.componentOptions.children[0].text
+          .toUpperCase()
+          .indexOf(input.toUpperCase()) >= 0
+      );
+    },
+  }
+};
+</script>
