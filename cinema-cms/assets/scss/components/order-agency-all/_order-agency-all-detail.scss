@@ -1,0 +1,24 @@
+.oad-list {
+    padding: 0;
+    margin: 0;
+
+    li {
+        display: flex;
+        padding: 4px 10px;
+    }
+}
+
+.detail-title {
+    flex-shrink: 0;
+    width: 140px;
+    vertical-align: top;
+  
+    + b {
+        vertical-align: top;
+    }
+}
+  
+.file-wrapper {
+    margin: 1rem 0;
+}
+
