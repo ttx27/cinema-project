@@ -1,0 +1,23 @@
+.noti-content {
+    line-height: 1.5;
+
+    p {
+        margin-bottom: 0;
+    }
+}
+  
+.noti-table {
+    td {
+        padding: 10px 5px;
+
+        &:first-child {
+            white-space: nowrap;
+        }
+    }
+}
+
+.expand-col-left {
+    width: 120px;
+    vertical-align: top;
+}
+

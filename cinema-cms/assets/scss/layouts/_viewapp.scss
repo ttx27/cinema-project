@@ -1,0 +1,42 @@
+.viewapp-body {
+    // background-color: #132d4e;
+    font-size: 16px;
+    color: #000;
+    font-family: $font-viewapp;
+
+    // Modify input
+    .ant-input {
+        height: 50px;
+        border-radius: 8px;
+        background-color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        border: 1px solid $color-bg-input;
+        padding-left: 16px;
+        padding-right: 16px;
+
+        &:focus {
+            // border: 1px solid #fff;
+        }
+    }
+
+    .ant-form-item-label label {
+        // color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    // Modify checkbox
+    .ant-checkbox-wrapper {
+        font-size: 18px;
+    }
+}
+
+.viewapp-container {
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+.viewapp-content {
+    padding: 11px;
+}
